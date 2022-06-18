@@ -1,8 +1,7 @@
 package com.sparta.airbnb_clone_be.security;
 
-
-import com.kokomong.mini_backend.model.User;
-import com.kokomong.mini_backend.repository.UserRepository;
+import com.sparta.airbnb_clone_be.model.User;
+import com.sparta.airbnb_clone_be.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

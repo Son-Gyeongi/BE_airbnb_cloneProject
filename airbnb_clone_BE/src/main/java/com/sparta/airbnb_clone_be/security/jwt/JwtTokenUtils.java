@@ -2,7 +2,7 @@ package com.sparta.airbnb_clone_be.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.kokomong.mini_backend.security.UserDetailsImpl;
+import com.sparta.airbnb_clone_be.security.UserDetailsImpl;
 
 import java.util.Date;
 
