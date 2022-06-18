@@ -1,6 +1,6 @@
 package com.sparta.airbnb_clone_be.security;
 
-import com.kokomong.mini_backend.security.jwt.JwtTokenUtils;
+import com.sparta.airbnb_clone_be.security.jwt.JwtTokenUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 

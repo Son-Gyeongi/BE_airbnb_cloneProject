@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.Optional;
 
-import static com.kokomong.mini_backend.security.jwt.JwtTokenUtils.*;
+import static com.sparta.airbnb_clone_be.security.jwt.JwtTokenUtils.*;
 
 @Component
 public class JwtDecoder {

@@ -1,11 +1,10 @@
 package com.sparta.airbnb_clone_be.security.provider;
 
-
-import com.kokomong.mini_backend.model.User;
-import com.kokomong.mini_backend.repository.UserRepository;
-import com.kokomong.mini_backend.security.UserDetailsImpl;
-import com.kokomong.mini_backend.security.jwt.JwtDecoder;
-import com.kokomong.mini_backend.security.jwt.JwtPreProcessingToken;
+import com.sparta.airbnb_clone_be.model.User;
+import com.sparta.airbnb_clone_be.repository.UserRepository;
+import com.sparta.airbnb_clone_be.security.UserDetailsImpl;
+import com.sparta.airbnb_clone_be.security.jwt.JwtDecoder;
+import com.sparta.airbnb_clone_be.security.jwt.JwtPreProcessingToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

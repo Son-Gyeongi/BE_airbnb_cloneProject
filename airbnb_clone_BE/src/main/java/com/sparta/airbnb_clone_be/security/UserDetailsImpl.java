@@ -1,6 +1,6 @@
 package com.sparta.airbnb_clone_be.security;
 
-import com.kokomong.mini_backend.model.User;
+import com.sparta.airbnb_clone_be.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
