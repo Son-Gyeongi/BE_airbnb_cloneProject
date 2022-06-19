@@ -16,8 +16,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public String signupUser(SignupRequestDto requestDto) {
-        String username = requestDto.getUsername();
-        System.out.println("username : "+username);
+        String email = requestDto.getEmail();
+        System.out.println("email : "+email);
         String nickname = requestDto.getNickname();
         System.out.println("nickname : "+nickname);
         System.out.println("password : "+requestDto.getPassword());
@@ -26,14 +26,14 @@ public class UserService {
         String password = passwordEncoder.encode(requestDto.getPassword());
 //        System.out.println("password : "+password);
 
-        User user = new User(username,nickname, password);
+        User user = new User(email,nickname, password);
         userRepository.save(user);
         return "회원가입을 축하합니다!!";
     }
 
     public String checkEmail(SignupRequestDto requestDto) {
-        String username = requestDto.getUsername();
-        if(userRepository.findByUsername(username).isPresent()){
+        String email = requestDto.getEmail();
+        if(userRepository.findByEmail(email).isPresent()){
 //            throw new IllegalArgumentException("중복된 이메일입니다.");
             //1.ResponseEntity 로 상태를 같이 넘겨줄지 (ok, bad 등등)
             //2. 아니면 true, false
