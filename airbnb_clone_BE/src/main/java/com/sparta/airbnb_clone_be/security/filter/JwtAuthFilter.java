@@ -1,8 +1,7 @@
 package com.sparta.airbnb_clone_be.security.filter;
 
-
-import com.kokomong.mini_backend.security.jwt.HeaderTokenExtractor;
-import com.kokomong.mini_backend.security.jwt.JwtPreProcessingToken;
+import com.sparta.airbnb_clone_be.security.jwt.HeaderTokenExtractor;
+import com.sparta.airbnb_clone_be.security.jwt.JwtPreProcessingToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;

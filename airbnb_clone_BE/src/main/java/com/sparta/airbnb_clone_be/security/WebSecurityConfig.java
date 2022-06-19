@@ -101,7 +101,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public FormLoginFilter formLoginFilter() throws Exception {
         FormLoginFilter formLoginFilter = new FormLoginFilter(authenticationManager());
-        formLoginFilter.setFilterProcessesUrl("/api/login");
+        formLoginFilter.setFilterProcessesUrl("/login"); //로그인이 진행 됨
         formLoginFilter.setAuthenticationSuccessHandler(formLoginSuccessHandler());
         formLoginFilter.afterPropertiesSet();
         return formLoginFilter;
@@ -124,25 +124,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("GET,/images/**");
         skipPathList.add("GET,/css/**");
 
-        // h2-console 허용
+        // h2-console 허용 - 위에 있어서 주석
 //        skipPathList.add("GET,/h2-console/**");
 //        skipPathList.add("POST,/h2-console/**");
+
         // 회원 관리 API 허용
         skipPathList.add("GET,/user/**");
 
-        skipPathList.add("GET,/oauth/**");
-        skipPathList.add("GET,/oauth/kakao/callback");
-        skipPathList.add("GET,/user/kakao/callback");
+        //카카오톡 skipPathList
+//        skipPathList.add("GET,/oauth/**");
+//        skipPathList.add("GET,/oauth/kakao/callback");
+//        skipPathList.add("GET,/user/kakao/callback");
 
-        skipPathList.add("POST,/api/signup");
-        skipPathList.add("POST,/api/signup/checkid");
-        skipPathList.add("POST,/api/login");
-        skipPathList.add("POST,/user/login");
-        //포스트,댓글 불러오는것 허락
-        skipPathList.add("GET,/api/main");
-        skipPathList.add("GET,/api/detail/{postid}");
-        skipPathList.add("GET,/api/comment/{postId}");
+        //회원가입하기, 로그인 관련 skipPathList
+        skipPathList.add("POST,/signup");  //회원가입
+        skipPathList.add("POST,/signup/email");  //email 중복 체크
+        skipPathList.add("POST,/signup/nickname");  //nickname 중복 체크
+        skipPathList.add("POST,/login");
 
+        //로그인이 왜 두개지?
+//        skipPathList.add("POST,/api/login");
+//        skipPathList.add("POST,/user/login");
+
+        //포스트,댓글 불러오는것 허락---------------로그인 성공하고 다시 보자
+//        skipPathList.add("GET,/api/main");
+//        skipPathList.add("GET,/api/detail/{postid}");
+//        skipPathList.add("GET,/api/comment/{postId}");
+
+//----------아래는 그대로----------
         skipPathList.add("GET,/");
         skipPathList.add("GET,/basic.js");
 
