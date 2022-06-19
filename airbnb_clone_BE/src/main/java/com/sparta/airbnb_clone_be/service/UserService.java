@@ -38,7 +38,7 @@ public class UserService {
             //1.ResponseEntity 로 상태를 같이 넘겨줄지 (ok, bad 등등)
             //2. 아니면 true, false
             //3. 문자열로
-            return "이미 있는 이메일입니다.";
+            return "존재하는 이메일입니다.";
         } else {
             return "사용가능한 이메일입니다.";
         }
@@ -47,7 +47,7 @@ public class UserService {
     public String checkNickname(SignupRequestDto requestDto) {
         String nickname = requestDto.getNickname();
         if(userRepository.findByNickname(nickname).isPresent()){
-            throw new IllegalArgumentException("중복된 닉네임입니다.");
+            return "중복된 닉네임입니다.";
         } else {
             return "사용가능한 닉네임입니다.";
         }
