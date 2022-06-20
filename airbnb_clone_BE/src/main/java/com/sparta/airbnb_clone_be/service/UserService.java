@@ -20,7 +20,7 @@ public class UserService {
         System.out.println("email : "+email);
         String nickname = requestDto.getNickname();
         System.out.println("nickname : "+nickname);
-        System.out.println("password : "+requestDto.getPassword());
+//        System.out.println("password : "+requestDto.getPassword());
 
         //패스워드 암호화
         String password = passwordEncoder.encode(requestDto.getPassword());
