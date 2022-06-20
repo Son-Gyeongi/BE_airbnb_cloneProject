@@ -7,13 +7,13 @@ public class LoginResponseDto {
 
     private String nickname;
 
-    private boolean result;
+    private boolean is_login;
 
     private String token;
 
-    public LoginResponseDto(String nickname, boolean result, String token) {
+    public LoginResponseDto(String nickname, boolean is_login, String token) {
         this.nickname = nickname;
-        this.result = result;
+        this.is_login = is_login;
         this.token = token;
     }
 }
