@@ -27,10 +27,22 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(unique = true)
+    private Long kakaoId;
+
+
     public User(String email, String nickname, String password) {
         this.email = email;
         this.nickname = nickname;
         this.password = password;
+    }
+
+    //카카오톡
+    public User(String username, String nickname, String password, Long kakaoId) {
+        this.email = username;
+        this.nickname = nickname;
+        this.password = password;
+        this.kakaoId = kakaoId;
     }
 
 //    public User(SignupRequestDto requestDto) {

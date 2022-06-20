@@ -1,12 +1,13 @@
 package com.sparta.airbnb_clone_be.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.airbnb_clone_be.dto.SignupRequestDto;
+import com.sparta.airbnb_clone_be.service.KakaoUserService;
 import com.sparta.airbnb_clone_be.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
@@ -14,6 +15,8 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
+
+    private final KakaoUserService kakaoUserService;
 
     //회원가입
     @PostMapping("/signup")
@@ -37,5 +40,20 @@ public class UserController {
     @PostMapping("/signup/nickname")
     public String checkNickname(@RequestBody SignupRequestDto requestDto) {
         return userService.checkNickname(requestDto);
+    }
+
+
+    //카카오톡 로그인
+    @GetMapping("/oauth/kakao/callback")
+    public boolean kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+
+        try { // 회원가입 진행 성공시 true
+            kakaoUserService.kakaoLogin(code, response);
+            return true;
+        }catch (Exception e){ // 에러나면 false
+            System.out.println("카톡 로그인 성공 못함!");
+            return false;
+        }
+
     }
 }
