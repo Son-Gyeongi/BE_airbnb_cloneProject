@@ -15,15 +15,13 @@ import java.util.List;
 public class AccommodationRequestDto {
     private String title;
 
-    private String house_name;
-
-    private Long fee;
+    private String fee;
 
     private String content;
 
     private String address;
 
-    private Long people;
+    private String people;
 
     private String wifi;
 
@@ -31,7 +29,7 @@ public class AccommodationRequestDto {
 
     private String category;
 
-    private Long room;
+    private String room;
 
     private List<MultipartFile> images;
 }

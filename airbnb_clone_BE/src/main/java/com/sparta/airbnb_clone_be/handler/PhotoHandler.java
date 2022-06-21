@@ -20,7 +20,7 @@ public class PhotoHandler {
         if(CollectionUtils.isEmpty(multipartFiles))
             return photoList;
 
-        String absolutePath = new File("").getAbsolutePath() + File.separator;
+        String absolutePath = new File("").getAbsolutePath() + File.separator + File.separator;
         String path = "images" + File.separator;
         File file = new File(path);
 
@@ -34,7 +34,7 @@ public class PhotoHandler {
 
         for(MultipartFile multipartFile : multipartFiles){
             PhotoDto photoDto = PhotoDto.builder()
-                    .name(multipartFile.getOriginalFilename())
+                    .key(multipartFile.getOriginalFilename())
                     .path(path + File.separator + multipartFile.getOriginalFilename())
                     .build();
 

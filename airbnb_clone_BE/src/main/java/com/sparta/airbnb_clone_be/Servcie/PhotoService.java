@@ -7,7 +7,7 @@ import com.sparta.airbnb_clone_be.repository.PhotoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,22 +16,8 @@ import java.util.stream.Collectors;
 public class PhotoService {
     private final PhotoRepository photoRepository;
 
-    @Transactional
-    public PhotoDto findByFileId(Long id){
 
-        Photo entity = photoRepository.findById(id).orElseThrow(()
-                -> new IllegalArgumentException("해당 파일이 존재하지 않습니다."));
-
-        PhotoDto photoDto = PhotoDto.builder()
-                .name(entity.getName())
-                .path(entity.getPath())
-                .build();
-
-        return photoDto;
-    }
-
-
-    @Transactional
+    @Transactional(readOnly = true)
     public List<PhotoResponseDto> findAllByBoard(Long accommodationId){
 
         List<Photo> photoList = photoRepository.findAllByAccommodationId(accommodationId);

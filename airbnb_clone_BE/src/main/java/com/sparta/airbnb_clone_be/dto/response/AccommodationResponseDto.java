@@ -18,15 +18,13 @@ public class AccommodationResponseDto {
 
     private String title;
 
-    private String house_name;
-
-    private Long fee;
+    private String fee;
 
     private String content;
 
     private String address;
 
-    private Long people;
+    private String people;
 
     private String wifi;
 
@@ -34,7 +32,7 @@ public class AccommodationResponseDto {
 
     private String category;
 
-    private Long room;
+    private String room;
 
     private List<Long> photoIds;
 
@@ -44,7 +42,6 @@ public class AccommodationResponseDto {
     public AccommodationResponseDto(Accommodation accommodation, List<Long> phtos){
         this.id = accommodation.getId();
         this.title = accommodation.getTitle();
-        this.house_name = accommodation.getHouse_name();
         this.fee = accommodation.getFee();
         this.content = accommodation.getContent();
         this.address = accommodation.getAddress();

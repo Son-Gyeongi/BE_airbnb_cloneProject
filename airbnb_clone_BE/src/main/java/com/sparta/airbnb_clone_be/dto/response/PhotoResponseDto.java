@@ -6,9 +6,10 @@ import lombok.Getter;
 @Getter
 public class PhotoResponseDto {
     private Long id;  // 파일 id
+    private String url;
 
-    public PhotoResponseDto(Photo entity){
-        this.id = entity.getId();
+    public PhotoResponseDto(Photo photo){
+        this.id = photo.getId();
+        this.url = photo.getUrl();
     }
-
 }

@@ -17,18 +17,18 @@ public class Photo {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String key;
 
     @Column(nullable = false)
-    private String path;
+    private String url;
 
     @ManyToOne
     @JoinColumn(name = "accommodation_id")
     private Accommodation accommodation;
 
     public Photo(PhotoDto photoDto){
-        this.name = photoDto.getName();
-        this.path = photoDto.getPath();
+        this.key = photoDto.getKey();
+        this.url = photoDto.getPath();
     }
 
     public void setAccommodation(Accommodation accommodation){

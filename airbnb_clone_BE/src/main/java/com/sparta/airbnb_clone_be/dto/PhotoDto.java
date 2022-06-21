@@ -6,7 +6,7 @@ import lombok.Data;
 @Builder
 @Data
 public class PhotoDto {
-    private String name;
+    private String key;
 
     private String path;
 }

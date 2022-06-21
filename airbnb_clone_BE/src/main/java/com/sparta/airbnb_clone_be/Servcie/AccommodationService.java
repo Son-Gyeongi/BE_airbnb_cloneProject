@@ -1,5 +1,6 @@
 package com.sparta.airbnb_clone_be.Servcie;
 
+import com.sparta.airbnb_clone_be.dto.PhotoDto;
 import com.sparta.airbnb_clone_be.dto.RequestDto.AccommodationRequestDto;
 import com.sparta.airbnb_clone_be.dto.response.AccommodationResponseDto;
 import com.sparta.airbnb_clone_be.handler.PhotoHandler;
@@ -30,11 +31,10 @@ public class AccommodationService {
     }
 
     @Transactional
-    public Accommodation host(AccommodationRequestDto requestDto) throws Exception {
+    public Accommodation host(AccommodationRequestDto requestDto, List<PhotoDto> photoDtos) throws Exception {
 
         Accommodation accommodation = Accommodation.builder()
                 .title(requestDto.getTitle())
-                .house_name(requestDto.getHouse_name())
                 .fee(requestDto.getFee())
                 .content(requestDto.getContent())
                 .address(requestDto.getAddress())
@@ -45,14 +45,14 @@ public class AccommodationService {
                 .room(requestDto.getRoom())
                 .build();
 
-        List<Photo> photoList = photoHandler.parseFileInfo(requestDto.getImages());
-
         // 파일이 존재할 때에만 처리
-        if(!photoList.isEmpty()) {
-            for(Photo photo : photoList) {
+        if(!photoDtos.isEmpty()) {
+            for(PhotoDto photoDto : photoDtos) {
                 // 파일을 DB에 저장
+                Photo photo = new Photo(photoDto);
                 photo.setAccommodation(accommodation);
                 photoRepository.save(photo);
+                System.out.println(1);
             }
         }
 
@@ -62,7 +62,6 @@ public class AccommodationService {
 //        AccommodationResponseDto accommodationResponseDto = new AccommodationResponseDto(
 //                id,
 //                accommodationRequestDto.getTitle(),
-//                accommodationRequestDto.getHouse_name(),
 //                accommodationRequestDto.getFee(),
 //                accommodationRequestDto.getContent(),
 //                accommodationRequestDto.getAddress(),

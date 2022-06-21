@@ -26,10 +26,7 @@ public class Accommodation {
     private String title;
 
     @Column(nullable = false)
-    private String house_name;
-
-    @Column(nullable = false)
-    private Long fee;
+    private String fee;
 
     @Column(nullable = false)
     private String content;
@@ -38,7 +35,7 @@ public class Accommodation {
     private String address;
 
     @Column(nullable = false)
-    private Long people;
+    private String people;
 
     @Column(nullable = false)
     private String wifi;
@@ -50,7 +47,7 @@ public class Accommodation {
     private String category;
 
     @Column(nullable = false)
-    private Long room;
+    private String room;
 
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<Photo> photos;
