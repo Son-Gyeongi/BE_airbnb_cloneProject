@@ -84,14 +84,15 @@ public class CommentService {
 
         totalStar = (cleanAvg + chechingAvg + accuracyAvg + communicationAvg + locationAvg +satisfactionAvg)/6;
 
+        //소수점 아래 1자리, 2자리까지 나타내려고 아래와 같이 썼다.
         return CommentAvgResponseDto.builder()
-                .cleanAvg(cleanAvg)
-                .chechingAvg(chechingAvg)
-                .accuracyAvg(accuracyAvg)
-                .communicationAvg(communicationAvg)
-                .locationAvg(locationAvg)
-                .satisfactionAvg(satisfactionAvg)
-                .totalStar(totalStar)
+                .cleanAvg(String.format("%1.f",cleanAvg))
+                .chechingAvg(String.format("%1.f",chechingAvg))
+                .accuracyAvg(String.format("%1.f",accuracyAvg))
+                .communicationAvg(String.format("%1.f",communicationAvg))
+                .locationAvg(String.format("%1.f",locationAvg))
+                .satisfactionAvg(String.format("%1.f",satisfactionAvg))
+                .totalStar(String.format("%2.f",totalStar))
                 .build();
     }
 }
