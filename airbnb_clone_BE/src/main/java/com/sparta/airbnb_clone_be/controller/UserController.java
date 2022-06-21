@@ -44,7 +44,7 @@ public class UserController {
 
 
     //카카오톡 로그인
-    @GetMapping("/oauth/kakao/callback")
+    @GetMapping("/user/kakao/callback")
     public boolean kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
 
         try { // 회원가입 진행 성공시 true
