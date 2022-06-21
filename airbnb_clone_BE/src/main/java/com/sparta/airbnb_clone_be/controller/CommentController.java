@@ -6,10 +6,7 @@ import com.sparta.airbnb_clone_be.model.Comment;
 import com.sparta.airbnb_clone_be.security.UserDetailsImpl;
 import com.sparta.airbnb_clone_be.service.CommentService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,8 +41,8 @@ public class CommentController {
         }
 
         @GetMapping("/api/accommodation/{id}/avgs")
-        public CommentAvgResponseDto starAvg() {
-            return commentService.starAvg();
+        public CommentAvgResponseDto starAvg(@PathVariable Long id) {
+            return commentService.starAvg(id);
         }
     }
 

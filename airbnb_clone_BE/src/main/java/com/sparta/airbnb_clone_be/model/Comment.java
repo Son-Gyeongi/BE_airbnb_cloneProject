@@ -35,7 +35,7 @@ public class Comment extends Timestamped {
     private Float satisfaction;//만족도
 
     @ManyToOne
-    @JoinColumn(name = "Accomodations_ID", nullable = false)
+    @JoinColumn(name = "accommodations_id", nullable = false)
     private Accomodations accomodations;
 
     public Comment(Float checkin, Float clean, Float accuracy, Float communication, Float location, Float satisfaction, Accomodations accomodations) {

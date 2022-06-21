@@ -34,7 +34,7 @@ public class CommentService {
         return saveComment;
     }
 
-    public CommentAvgResponseDto starAvg() {
+    public CommentAvgResponseDto starAvg(Long id) {
         /**
          * {
          *   “checkinAvg” : 5,//체크인
@@ -48,13 +48,13 @@ public class CommentService {
          * }
          */
 
-        float chechingAvg = 0F;
-        float cleanAvg = 0F;
-        float accuracyAvg = 0F;
-        float communicationAvg = 0F;
-        float locationAvg = 0F;
-        float satisfactionAvg = 0F;
-        float totalStar = 0F;
+        Float chechingAvg = 0F;
+        Float cleanAvg = 0F;
+        Float accuracyAvg = 0F;
+        Float communicationAvg = 0F;
+        Float locationAvg = 0F;
+        Float satisfactionAvg = 0F;
+        Float totalStar = 0F;
 
         //commentRespository에서 각 필드의 값들을 더해야한다.
         /**
@@ -65,18 +65,34 @@ public class CommentService {
          *         this.location = location;
          *         this.satisfaction = satisfaction;
          */
-        List<Comment> checkInList = commentRepository.findAllByCheckin();
-        List<Comment> cleanList = commentRepository.findAllByClean();
-        List<Comment> accuracyList = commentRepository.findAllByAccuracy();
-        List<Comment> communicationList = commentRepository.findAllByCommunication();
-        List<Comment> locationList = commentRepository.findAllByLocation();
-        List<Comment> satisfactionList = commentRepository.findAllBySatisfaction();
+        List<Comment> commentList = commentRepository.findAllByAccommodationsId(id);
 
-        for(int i = 0 ; i<checkInList.size();i++){
-            float checkIngSum = 0F;
-            checkIngSum +=  (float) checkInList.get(i);
-
+        for(int i = 0 ; i<commentList.size();i++){
+            cleanAvg += commentList.get(i).getClean();
+            chechingAvg += commentList.get(i).getCheckin();
+            accuracyAvg += commentList.get(i).getAccuracy();
+            communicationAvg += commentList.get(i).getCommunication();
+            locationAvg += commentList.get(i).getLocation();
+            satisfactionAvg += commentList.get(i).getSatisfaction();
         }
+        cleanAvg /= commentList.size();
+        chechingAvg /= commentList.size();
+        accuracyAvg /= commentList.size();
+        communicationAvg /= commentList.size();
+        locationAvg /= commentList.size();
+        satisfactionAvg /= commentList.size();
+
+        totalStar = (cleanAvg + chechingAvg + accuracyAvg + communicationAvg + locationAvg +satisfactionAvg)/6;
+
+        return CommentAvgResponseDto.builder()
+                .cleanAvg(cleanAvg)
+                .chechingAvg(chechingAvg)
+                .accuracyAvg(accuracyAvg)
+                .communicationAvg(communicationAvg)
+                .locationAvg(locationAvg)
+                .satisfactionAvg(satisfactionAvg)
+                .totalStar(totalStar)
+                .build();
     }
 }
 
