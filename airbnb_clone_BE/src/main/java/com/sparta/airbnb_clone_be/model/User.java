@@ -35,11 +35,12 @@ public class User {
         this.email = email;
         this.nickname = nickname;
         this.password = password;
+        this.kakaoId = null;
     }
 
     //카카오톡
-    public User(String username, String nickname, String password, Long kakaoId) {
-        this.email = username;
+    public User(String email, String nickname, String password, Long kakaoId) {
+        this.email = email;
         this.nickname = nickname;
         this.password = password;
         this.kakaoId = kakaoId;

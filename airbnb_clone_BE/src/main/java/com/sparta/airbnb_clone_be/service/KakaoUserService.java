@@ -129,8 +129,8 @@ public class KakaoUserService {
             String nickname = kakaoUserInfo.getNickname();
             System.out.println("닉네임 넣음 = "+nickname);
 //            String username = kakaoUserInfo.getNickname();
-            String username = UUID.randomUUID().toString();  // 기존 username과 겹치지 않도록 복잡한 랜덤 username 생성
-            System.out.println("유저네임 넣음 = "+username);
+            String email = UUID.randomUUID().toString();  // 기존 username과 겹치지 않도록 복잡한 랜덤 username 생성
+            System.out.println("유저네임 넣음 = "+email);
 
             // password: random UUID
             String password = UUID.randomUUID().toString();
@@ -139,7 +139,7 @@ public class KakaoUserService {
             String encodedPassword = passwordEncoder.encode(password);
             System.out.println("비밀번호 암호화  = "+encodedPassword);
 
-            kakaoUser = new User(username, nickname, encodedPassword, kakaoId);
+            kakaoUser = new User(email, nickname, encodedPassword, kakaoId);
             userRepository.save(kakaoUser);
         }
         System.out.println("카카오톡 유저정보 넣음");

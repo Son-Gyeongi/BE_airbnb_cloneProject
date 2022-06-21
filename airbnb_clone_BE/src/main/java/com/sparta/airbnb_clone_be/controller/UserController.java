@@ -51,7 +51,7 @@ public class UserController {
             kakaoUserService.kakaoLogin(code, response);
             return true;
         }catch (Exception e){ // 에러나면 false
-            System.out.println("카톡 로그인 성공 못함!");
+            System.out.println("카톡 로그인 실패!");
             return false;
         }
 
