@@ -48,7 +48,9 @@ public class UserController {
     public boolean kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
 
         try { // 회원가입 진행 성공시 true
+            System.out.println("카카오톡 로그인 시도");  //#
             kakaoUserService.kakaoLogin(code, response);
+            System.out.println("로그인 성공");  //#
             return true;
         }catch (Exception e){ // 에러나면 false
             System.out.println("카톡 로그인 실패!");

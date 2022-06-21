@@ -9,11 +9,11 @@ public class LoginResponseDto {
 
     private boolean is_login;
 
-    private String accessToken;
+    private String token;
 
-    public LoginResponseDto(String nickname, boolean is_login, String accessToken) {
+    public LoginResponseDto(String nickname, boolean is_login, String token) {
         this.nickname = nickname;
         this.is_login = is_login;
-        this.accessToken = accessToken;
+        this.token = token;
     }
 }

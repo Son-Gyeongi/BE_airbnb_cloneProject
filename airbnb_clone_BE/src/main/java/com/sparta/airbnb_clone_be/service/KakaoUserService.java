@@ -37,24 +37,32 @@ public class KakaoUserService {
     @Transactional
     public void kakaoLogin(String code,HttpServletResponse response) throws JsonProcessingException {
         // 1. "인가 코드"로 "액세스 토큰" 요청
+        System.out.println("1. \"인가 코드\"로 \"액세스 토큰\" 요청");  //#
         String accessToken = getAccessToken(code);
-        System.out.println("인가 코드 : " + code);
-        System.out.println("엑세스 토큰: " + accessToken);;
+//        System.out.println("인가 코드 : " + code);
+        System.out.println("1. getAccessToken + 인가 코드 : " + code);  //#
+//        System.out.println("엑세스 토큰: " + accessToken);
+        System.out.println("1. getAccessToken + 엑세스 토큰: " + accessToken);  //#
 
         // 2. 토큰으로 카카오 API 호출
         KakaoUserInfoDto kakaoUserInfo = getKakaoUserInfo(accessToken);
+        System.out.println("2. kakaoUserInfo : "+ kakaoUserInfo);  //#
 
         // 3. 필요시에 회원가입
         User kakaoUser = registerKakaoUserIfNeeded(kakaoUserInfo);
+        System.out.println("3. kakaoUser : "+kakaoUser);  //#
 
         // 4. 강제 로그인 처리
         jwtTokenCreate(kakaoUser,response);
+        System.out.println("4. kakaoUser"+kakaoUser);  //#
+        System.out.println("4. response"+response);  //#
     }
 
     private String getAccessToken(String code) throws JsonProcessingException {
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+        System.out.println("getAccessToken + headers : "+headers);  //#
 
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
@@ -64,6 +72,7 @@ public class KakaoUserService {
 //        body.add("redirect_uri", "http://localhost:8080/user/kakao/callback"); //테스트는 내꺼에서 해보자
 //        body.add("redirect_uri", "http://3.36.78.102:8080/user/kakao/callback"); //테스트는 내꺼에서 해보자
         body.add("code", code);
+        System.out.println("getAccessToken + body : "+body);  //#
 
         // HTTP 요청 보내기
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest =
@@ -75,11 +84,16 @@ public class KakaoUserService {
                 kakaoTokenRequest,
                 String.class
         );
+        System.out.println("getAccessToken + 유저정보 받는 post는 통과함");  //#
+        System.out.println("getAccessToken + response : "+response);  //#
 
         // HTTP 응답 (JSON) -> 액세스 토큰 파싱
         String responseBody = response.getBody();
+        System.out.println("getAccessToken + responseBody : "+responseBody);  //#
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
+        System.out.println("getAccessToken + jsonNode : "+jsonNode);  //#
+        System.out.println("getAccessToken + jsonNode.get(\"access_token\").asText() : "+jsonNode.get("access_token").asText());  //#
         return jsonNode.get("access_token").asText();
     }
 
@@ -88,7 +102,8 @@ public class KakaoUserService {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + accessToken);
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-        System.out.println("헤더까지는 받음 헤더 : " +headers);
+//        System.out.println("헤더까지는 받음 헤더 : " +headers);
+        System.out.println("getKakaoUserInfo + 헤더까지는 받음 헤더 : " +headers);  //#
 
         // HTTP 요청 보내기
         HttpEntity<MultiValueMap<String, String>> kakaoUserInfoRequest = new HttpEntity<>(headers);
@@ -99,15 +114,16 @@ public class KakaoUserService {
                 kakaoUserInfoRequest,
                 String.class
         );
-        System.out.println("유저정보 받는 post는 통과함");
+        System.out.println("getKakaoUserInfo + 유저정보 받는 post는 통과함");  //#
 
         String responseBody = response.getBody();
-        System.out.println("resposneBody " + responseBody);
+//        System.out.println("resposneBody " + responseBody);
+        System.out.println("getKakaoUserInfo + resposneBody " + responseBody);
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         Long id = jsonNode.get("id").asLong();
-        System.out.println("id = " + id);
+        System.out.println("getKakaoUserInfo + id = " + id);  //#
 
         String nickname = jsonNode.get("properties")
                 .get("nickname").asText();
@@ -122,8 +138,11 @@ public class KakaoUserService {
         // DB 에 중복된 Kakao Id 가 있는지 확인
         System.out.println("카톡유저확인 클래스 들어옴");
         Long kakaoId = kakaoUserInfo.getId();
+        System.out.println("registerKakaoUserIfNeeded + kakaoId : "+kakaoId);  //#
         User kakaoUser = userRepository.findByKakaoId(kakaoId)
                 .orElse(null);
+        System.out.println("registerKakaoUserIfNeeded + kakaoUser : "+kakaoUser);  //#
+
         if (kakaoUser == null) {
             // 회원가입
             // username: kakao nickname
@@ -169,11 +188,11 @@ public class KakaoUserService {
 
         UserDetailsImpl userDetails1 = ((UserDetailsImpl) authentication.getPrincipal());
 
-        System.out.println("userDetails1 : " + userDetails1.toString());
+        System.out.println("jwtTokenCreate + userDetails1 : " + userDetails1.toString());  //#
 
         final String token = JwtTokenUtils.generateJwtToken(userDetails1);
 
-        System.out.println("token값:" + token);
+        System.out.println("jwtTokenCreate + token값:" + token);  //#
         response.addHeader("Authorization", "BEARER" + " " + token);
 
     }
