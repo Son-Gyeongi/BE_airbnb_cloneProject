@@ -1,6 +1,5 @@
 package com.sparta.airbnb_clone_be.model;
 
-import com.sparta.airbnb_clone_be.dto.CommentRequestdto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

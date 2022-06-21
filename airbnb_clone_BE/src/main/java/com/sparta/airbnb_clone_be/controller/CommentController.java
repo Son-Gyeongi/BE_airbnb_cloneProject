@@ -1,10 +1,12 @@
 package com.sparta.airbnb_clone_be.controller;
 
+import com.sparta.airbnb_clone_be.dto.CommentAvgResponseDto;
 import com.sparta.airbnb_clone_be.dto.CommentRequestdto;
 import com.sparta.airbnb_clone_be.model.Comment;
 import com.sparta.airbnb_clone_be.security.UserDetailsImpl;
 import com.sparta.airbnb_clone_be.service.CommentService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +41,11 @@ public class CommentController {
 
 
             return result;
+        }
+
+        @GetMapping("/api/accommodation/{id}/avgs")
+        public CommentAvgResponseDto starAvg() {
+            return commentService.starAvg();
         }
     }
 
