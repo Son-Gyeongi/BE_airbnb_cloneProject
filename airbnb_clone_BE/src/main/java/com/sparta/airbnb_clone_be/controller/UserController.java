@@ -32,13 +32,13 @@ public class UserController {
 
     //email(username) 중복체크
     @PostMapping("/signup/email")
-    public String checkEmail(@RequestBody SignupRequestDto requestDto) {
+    public boolean checkEmail(@RequestBody SignupRequestDto requestDto) {
         return userService.checkEmail(requestDto);
     }
 
     //nickname 중복체크
     @PostMapping("/signup/nickname")
-    public String checkNickname(@RequestBody SignupRequestDto requestDto) {
+    public boolean checkNickname(@RequestBody SignupRequestDto requestDto) {
         return userService.checkNickname(requestDto);
     }
 
