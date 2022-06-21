@@ -1,2 +1,4 @@
-package com.sparta.airbnb_clone_be.dto;public class CommentResponsedto {
+package com.sparta.airbnb_clone_be.dto;
+
+public class CommentResponsedto {
 }

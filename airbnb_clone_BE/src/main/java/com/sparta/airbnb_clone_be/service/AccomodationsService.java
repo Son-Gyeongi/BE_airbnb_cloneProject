@@ -1,2 +1,4 @@
-package com.sparta.airbnb_clone_be.service;public class AccomodationsService {
+package com.sparta.airbnb_clone_be.service;
+
+public class AccomodationsService {
 }
