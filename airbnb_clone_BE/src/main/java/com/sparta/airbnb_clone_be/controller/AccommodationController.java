@@ -18,20 +18,12 @@ import java.util.List;
 public class AccommodationController {
 
     private final AccommodationService accommodationService;
-    private final PhotoService photoService;
 
     private final S3Service s3Service;
 
     @GetMapping("/api/accommodations/{id}")
     public AccommodationResponseDto readDetailAccommodation(@PathVariable Long id){
-        List<PhotoResponseDto> photoResponseDtoList = photoService.findAllByBoard(id);
-        List<Long> photoId = new ArrayList<>();
-        // 각 첨부파일 id 추가
-        for(PhotoResponseDto photoResponseDto : photoResponseDtoList)
-            photoId.add(photoResponseDto.getId());
-        System.out.println("get accommodation");
-
-        return accommodationService.findByAccommodation(id, photoId);
+        return accommodationService.findByAccommodation(id);
     }
 
     @PostMapping("/api/accommodation")

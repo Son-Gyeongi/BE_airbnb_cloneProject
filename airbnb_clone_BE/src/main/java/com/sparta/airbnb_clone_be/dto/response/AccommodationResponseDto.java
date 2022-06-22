@@ -34,12 +34,12 @@ public class AccommodationResponseDto {
 
     private String room;
 
-    private List<Long> photoIds;
+    private List<String> photoUrls;
 
     //private String nickname;
 
 
-    public AccommodationResponseDto(Accommodation accommodation, List<Long> phtos){
+    public AccommodationResponseDto(Accommodation accommodation){
         this.id = accommodation.getId();
         this.title = accommodation.getTitle();
         this.fee = accommodation.getFee();
@@ -50,6 +50,11 @@ public class AccommodationResponseDto {
         this.parking = accommodation.getParking();
         this.category = accommodation.getCategory();
         this.room = accommodation.getRoom();
-        this.photoIds = phtos;
     }
+
+    public void setPhotoId(List<String> photoUrls){
+        this.photoUrls = photoUrls;
+    }
+
+
 }

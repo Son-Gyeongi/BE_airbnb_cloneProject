@@ -1,12 +1,8 @@
 package com.sparta.airbnb_clone_be.controller;
 
 import com.sparta.airbnb_clone_be.Servcie.PhotoService;
-import com.sparta.airbnb_clone_be.dto.PhotoDto;
 import com.sparta.airbnb_clone_be.dto.response.PhotoResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.IOUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 
 @RequiredArgsConstructor

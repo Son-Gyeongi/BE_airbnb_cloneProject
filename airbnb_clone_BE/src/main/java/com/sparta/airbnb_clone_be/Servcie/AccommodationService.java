@@ -3,7 +3,6 @@ package com.sparta.airbnb_clone_be.Servcie;
 import com.sparta.airbnb_clone_be.dto.PhotoDto;
 import com.sparta.airbnb_clone_be.dto.RequestDto.AccommodationRequestDto;
 import com.sparta.airbnb_clone_be.dto.response.AccommodationResponseDto;
-import com.sparta.airbnb_clone_be.handler.PhotoHandler;
 import com.sparta.airbnb_clone_be.model.Accommodation;
 import com.sparta.airbnb_clone_be.model.Photo;
 import com.sparta.airbnb_clone_be.repository.AccommodationRepository;
@@ -12,22 +11,29 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class AccommodationService {
     private final AccommodationRepository accommodationRepository;
-    private final PhotoHandler photoHandler;
     private final PhotoRepository photoRepository;
 
     @Transactional
-    public AccommodationResponseDto findByAccommodation(Long id, List<Long> photoId){
+    public AccommodationResponseDto findByAccommodation(Long id){
+
         Accommodation accommodation = accommodationRepository.findById(id).orElseThrow(()
                 -> new IllegalArgumentException("해당 파일이 존재하지 않습니다."));
 
+        AccommodationResponseDto accommodationResponseDto = new AccommodationResponseDto(accommodation);
 
-        return new AccommodationResponseDto(accommodation, photoId);
+        List<String> photoUrls = new ArrayList<>();
+        for(Photo photo : accommodation.getPhotos())
+            photoUrls.add(photo.getUrl());
+        accommodationResponseDto.setPhotoId(photoUrls);
+
+        return accommodationResponseDto;
     }
 
     @Transactional
