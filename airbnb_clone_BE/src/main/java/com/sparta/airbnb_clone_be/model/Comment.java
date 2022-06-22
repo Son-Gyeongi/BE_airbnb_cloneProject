@@ -1,6 +1,7 @@
 package com.sparta.airbnb_clone_be.model;
-
-import com.sparta.airbnb_clone_be.dto.CommentRequestdto;
+import com.sparta.airbnb_clone_be.model.Accommodation;
+import com.sparta.airbnb_clone_be.dto.RequestDto.CommentRequestDto;
+import com.sparta.miniproject.model.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -36,17 +37,17 @@ public class Comment extends Timestamped {
     private Float satisfaction;//만족도
 
     @ManyToOne
-    @JoinColumn(name = "Accomodations_ID", nullable = false)
-    private Accomodations accomodations;
+    @JoinColumn(name = "Accomodation_ID", nullable = false)
+    private Accommodation accomodation;
 
-    public Comment(Float checkin, Float clean, Float accuracy, Float communication, Float location, Float satisfaction, Accomodations accomodations) {
+    public Comment(Float checkin, Float clean, Float accuracy, Float communication, Float location, Float satisfaction, Accommodation accomodation) {
         this.checkin = checkin;
         this.clean = clean;
         this.accuracy = accuracy;
         this.communication = communication;
         this.location = location;
         this.satisfaction = satisfaction;
-        this.accomodations = accomodations;
+        this.accomodation = accomodation;
 
     }
 }

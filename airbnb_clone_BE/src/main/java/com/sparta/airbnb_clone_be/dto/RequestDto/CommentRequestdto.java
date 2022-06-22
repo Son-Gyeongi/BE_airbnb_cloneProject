@@ -1,4 +1,4 @@
-package com.sparta.airbnb_clone_be.dto;
+package com.sparta.airbnb_clone_be.dto.RequestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentRequestdto {
+public  class CommentRequestDto {
 
     private Long accomodationid;
     private String comment;
