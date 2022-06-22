@@ -82,7 +82,7 @@ public class AccommodationService {
     }
 
     @Transactional
-    public Accommodation host(AccommodationRequestDto requestDto, List<PhotoDto> photoDtos, UserDetailsImpl userDetails) throws Exception {
+    public AccommodationResponseDto host(AccommodationRequestDto requestDto, List<PhotoDto> photoDtos, UserDetailsImpl userDetails) throws Exception {
 
         Accommodation accommodation = Accommodation.builder()
                 .title(requestDto.getTitle())
@@ -97,6 +97,7 @@ public class AccommodationService {
                 .user(userDetails.getUser())
                 .build();
 
+        List<String> photoUrls = new ArrayList<>();
         // 파일이 존재할 때에만 처리
         if(!photoDtos.isEmpty()) {
             for(PhotoDto photoDto : photoDtos) {
@@ -104,13 +105,19 @@ public class AccommodationService {
                 Photo photo = new Photo(photoDto);
                 photo.setAccommodation(accommodation);
                 photoRepository.save(photo);
+
+                //ResponseDto에 넣어줄 photoUrl 만들기
+                //List<PhotoDto>나 photo.getPhoto는 List<String>이 아니라서 responseDto에 못 넣음
+                photoUrls.add(photoDto.getPath());
             }
         }
 
-
         accommodationRepository.save(accommodation);
         System.out.println("호스트 성공");
-        return accommodation;
+
+        AccommodationResponseDto accommodationResponseDto = new AccommodationResponseDto(accommodation);
+        accommodationResponseDto.setPhotoId(photoUrls);
+        return accommodationResponseDto;
     }
 
 

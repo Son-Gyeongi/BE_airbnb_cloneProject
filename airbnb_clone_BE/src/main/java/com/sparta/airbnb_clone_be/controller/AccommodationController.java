@@ -40,8 +40,8 @@ public class AccommodationController {
     }
 
     @PostMapping("/api/accommodations")
-    public void hostAccommodation(AccommodationRequestDto requestDto,  @AuthenticationPrincipal UserDetailsImpl userDetails) throws Exception {
+    public AccommodationResponseDto hostAccommodation(AccommodationRequestDto requestDto,  @AuthenticationPrincipal UserDetailsImpl userDetails) throws Exception {
         List<PhotoDto> photoDtos = s3Service.uploadFile(requestDto.getImages());
-        accommodationService.host(requestDto, photoDtos, userDetails);
+        return accommodationService.host(requestDto, photoDtos, userDetails);
     }
 }

@@ -23,16 +23,10 @@ public class CommentService {
     private final AccommodationRepository accommodationRepository;
 
     //등록
-    public Comment createComment(CommentRequestDto commentRequestdto, Long id, UserDetailsImpl userDetails) {
+    public CommentResponseDto createComment(CommentRequestDto commentRequestdto, Long id, UserDetailsImpl userDetails) {
         Accommodation accommodation = accommodationRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("")
         );
-
-//        String email = "test 확인";
-//        if (userDetails != null) {
-//            email = userDetails.getUser().getEmail();
-//        }
-
 
         Comment comment = new Comment(commentRequestdto.getCheckin(),
                 commentRequestdto.getClean(),
@@ -46,8 +40,16 @@ public class CommentService {
 
         Comment saveComment = commentRepository.save(comment);
 
+        CommentResponseDto commentResponseDto = CommentResponseDto.builder()
+                .id(comment.getId())
+                .content(comment.getComment())
+                .createdAt(comment.getCreatedAt())
+                .user_nickname(comment.getUser().getNickname())
+                .accommodation_id(comment.getAccommodation().getId())
+                .build();
+
         System.out.println("코멘트 성공");
-        return saveComment;
+        return commentResponseDto;
     }
 
     public List<CommentResponseDto> findComments(Long id){
