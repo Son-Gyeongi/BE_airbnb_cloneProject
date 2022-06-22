@@ -21,20 +21,10 @@ public class CommentController {
 
     //댓글등록
     @PostMapping("/api/accommodations/{id}/comments")
-    public void createComment(@RequestBody CommentRequestDto commentRequestdto, @AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long id) {
-        Comment comment = commentService.createComment(commentRequestdto, id, userDetails);
+    public CommentResponseDto createComment(@RequestBody CommentRequestDto commentRequestdto, @AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long id) {
+        return commentService.createComment(commentRequestdto, id, userDetails);
 
-//        Map<String, Object> result = new HashMap<>();
-//        result.put("checkin", comment.getCheckin());
-//        result.put("comment", comment.getComment());
-//        result.put("clean", comment.getClean());
-//        result.put("accuracy", comment.getAccuracy());
-//        result.put("communication", comment.getCommunication());
-//        result.put("location", comment.getLocation());
-//        result.put("satisfaction", comment.getSatisfaction());
-////        result.put("id", comment.getCommentId());
 
-//        return result;
     }
 
     @GetMapping("/api/accommodations/{id}/comments")
