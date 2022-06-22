@@ -1,6 +1,7 @@
 package com.sparta.airbnb_clone_be.controller;
 
 
+import com.sparta.airbnb_clone_be.security.UserDetailsImpl;
 import com.sparta.airbnb_clone_be.service.AccommodationService;
 import com.sparta.airbnb_clone_be.service.S3Service;
 import com.sparta.airbnb_clone_be.dto.PhotoDto;
@@ -8,6 +9,7 @@ import com.sparta.airbnb_clone_be.dto.RequestDto.AccommodationRequestDto;
 import com.sparta.airbnb_clone_be.dto.response.AccommodationResponseDto;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,22 +28,19 @@ public class AccommodationController {
         return accommodationService.findByAccommodation(id);
     }
 
-    //카테고리 검색하기
     @GetMapping("/api/accommodations")
-    public List<AccommodationResponseDto> findByCategory(@RequestParam String category) {
-        return accommodationService.findByCategory(category);
+    public List<AccommodationResponseDto> readMain(@RequestParam(required = false) String category) {
+        if(category == null){
+            return accommodationService.findMain();
+        }
+        else{
+            return accommodationService.findByCategory(category);
+        }
     }
-
-    @GetMapping("/api/accommodations")
-    public List<AccommodationResponseDto> readMain() {
-
-        return accommodationService.findMain();
-    }
-
 
     @PostMapping("/api/accommodation")
-    public void hostAccommodation(AccommodationRequestDto requestDto) throws Exception {
+    public void hostAccommodation(AccommodationRequestDto requestDto,  @AuthenticationPrincipal UserDetailsImpl userDetails) throws Exception {
         List<PhotoDto> photoDtos = s3Service.uploadFile(requestDto.getImages());
-        accommodationService.host(requestDto, photoDtos);
+        accommodationService.host(requestDto, photoDtos, userDetails);
     }
 }

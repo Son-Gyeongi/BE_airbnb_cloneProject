@@ -51,6 +51,10 @@ public class Accommodation {
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<Photo> photos;
 
+    @ManyToOne
+    @JoinColumn(name = "user_nickname")
+    private User user;
+
     public void addPhoto(Photo photo) {
         this.photos.add(photo);
 

@@ -12,10 +12,11 @@ public class Comment extends Timestamped {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private Long commentId;
+    private Long id;
 
     @Column(nullable = false)
     private String comment;//커멘트
+
     @Column(nullable = false)
     private Float checkin;//체크인
 
@@ -35,10 +36,15 @@ public class Comment extends Timestamped {
     private Float satisfaction;//만족도
 
     @ManyToOne
-    @JoinColumn(name = "accommodations_id", nullable = false)
+    @JoinColumn(name = "accommodations_id")
     private Accommodation accommodation;
 
-    public Comment(Float checkin, Float clean, Float accuracy, Float communication, Float location, Float satisfaction, Accommodation accommodation) {
+    @ManyToOne
+    @JoinColumn(name = "user_nickname")
+    private User user;
+
+    public Comment(Float checkin, Float clean, Float accuracy, Float communication, Float location,
+                   Float satisfaction, Accommodation accommodation, User user, String comment) {
         this.checkin = checkin;
         this.clean = clean;
         this.accuracy = accuracy;
@@ -46,6 +52,8 @@ public class Comment extends Timestamped {
         this.location = location;
         this.satisfaction = satisfaction;
         this.accommodation = accommodation;
+        this.comment = comment;
+        this.user = user;
 
     }
 }

@@ -11,8 +11,7 @@ import javax.validation.constraints.Min;
 @AllArgsConstructor
 @NoArgsConstructor
 public  class CommentRequestDto {
-
-    private Long accomodationid;
+    
     private String comment;
     @Min(0)
     @Max(5)

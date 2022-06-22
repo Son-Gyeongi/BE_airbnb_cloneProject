@@ -7,6 +7,7 @@ import com.sparta.airbnb_clone_be.model.Accommodation;
 import com.sparta.airbnb_clone_be.model.Photo;
 import com.sparta.airbnb_clone_be.repository.AccommodationRepository;
 import com.sparta.airbnb_clone_be.repository.PhotoRepository;
+import com.sparta.airbnb_clone_be.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +30,10 @@ public class AccommodationService {
         for(Accommodation accommodation : accommoList) {
             AccommodationResponseDto accommodationResponseDto = new AccommodationResponseDto(accommodation);
 
-            List<Long> photoIds = new ArrayList<>();
+            List<String> photoUrl = new ArrayList<>();
             for(Photo photo : accommodation.getPhotos())
-                photoIds.add(photo.getId());
-            accommodationResponseDto.setPhotoId(photoIds);
+                photoUrl.add(photo.getUrl());
+            accommodationResponseDto.setPhotoId(photoUrl);
 
             accommodationResponseDtoList.add(accommodationResponseDto);
         }
@@ -50,10 +51,10 @@ public class AccommodationService {
         for (Accommodation accommodation : accommoList) {
             AccommodationResponseDto accommodationResponseDto = new AccommodationResponseDto(accommodation);
 
-            List<Long> photoIds = new ArrayList<>();
+            List<String> photoUrl = new ArrayList<>();
             for (Photo photo : accommodation.getPhotos())
-                photoIds.add(photo.getId());
-            accommodationResponseDto.setPhotoId(photoIds);
+                photoUrl.add(photo.getUrl());
+            accommodationResponseDto.setPhotoId(photoUrl);
 
             accommodationResponseDtoList.add(accommodationResponseDto);
         }
@@ -77,7 +78,7 @@ public class AccommodationService {
     }
 
     @Transactional
-    public Accommodation host(AccommodationRequestDto requestDto, List<PhotoDto> photoDtos) throws Exception {
+    public Accommodation host(AccommodationRequestDto requestDto, List<PhotoDto> photoDtos, UserDetailsImpl userDetails) throws Exception {
 
         Accommodation accommodation = Accommodation.builder()
                 .title(requestDto.getTitle())
@@ -89,6 +90,7 @@ public class AccommodationService {
                 .parking(requestDto.getParking())
                 .category(requestDto.getCategory())
                 .room(requestDto.getRoom())
+                .user(userDetails.getUser())
                 .build();
 
         // 파일이 존재할 때에만 처리
