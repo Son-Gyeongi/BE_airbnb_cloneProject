@@ -124,12 +124,12 @@ public class CommentService {
         System.out.println("avg 검색 성공");
         //소수점 아래 1자리, 2자리까지 나타내려고 아래와 같이 썼다.
         return CommentAvgResponseDto.builder()
-                .cleanAvg((float) (Math.round(cleanAvg * 100) / 10.0))
-                .chechingAvg((float) (Math.round(chechingAvg * 100) / 10.0))
-                .accuracyAvg((float) (Math.round(accuracyAvg * 100) / 10.0))
-                .communicationAvg((float) (Math.round(communicationAvg * 100) / 10.0))
-                .locationAvg((float) (Math.round(locationAvg * 100) / 10.0))
-                .satisfactionAvg((float) (Math.round(satisfactionAvg * 100) / 10.0))
+                .cleanAvg((float) (Math.round(cleanAvg * 10) / 10.0))
+                .chechingAvg((float) (Math.round(chechingAvg * 10) / 10.0))
+                .accuracyAvg((float) (Math.round(accuracyAvg * 10) / 10.0))
+                .communicationAvg((float) (Math.round(communicationAvg * 10) / 10.0))
+                .locationAvg((float) (Math.round(locationAvg * 10) / 10.0))
+                .satisfactionAvg((float) (Math.round(satisfactionAvg * 10) / 10.0))
                 .totalStar((float) (Math.round(totalStar * 100) / 100.0))
                 .build();
     }
