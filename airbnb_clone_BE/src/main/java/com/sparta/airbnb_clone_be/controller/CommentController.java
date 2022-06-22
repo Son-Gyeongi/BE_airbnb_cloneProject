@@ -20,7 +20,7 @@ public class CommentController {
     private final CommentService commentService;
 
     //댓글등록
-    @PostMapping("/api/accommodations/{id}/comment")
+    @PostMapping("/api/accommodations/{id}/comments")
     public void createComment(@RequestBody CommentRequestDto commentRequestdto, @AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long id) {
         Comment comment = commentService.createComment(commentRequestdto, id, userDetails);
 
@@ -37,12 +37,12 @@ public class CommentController {
 //        return result;
     }
 
-    @GetMapping("/api/accommodations/{id}/comment")
+    @GetMapping("/api/accommodations/{id}/comments")
     public List<CommentResponseDto> viewReview(@PathVariable Long id){
         return commentService.findComments(id);
     }
 
-    @GetMapping("/api/accommodation/{id}/comment/avgs")
+    @GetMapping("/api/accommodations/{id}/comments/avgs")
         public CommentAvgResponseDto starAvg(@PathVariable Long id) {
             return commentService.starAvg(id);
         }
