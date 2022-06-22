@@ -36,16 +36,16 @@ public class Comment extends Timestamped {
 
     @ManyToOne
     @JoinColumn(name = "accommodations_id", nullable = false)
-    private Accomodations accomodations;
+    private Accommodation accommodation;
 
-    public Comment(Float checkin, Float clean, Float accuracy, Float communication, Float location, Float satisfaction, Accomodations accomodations) {
+    public Comment(Float checkin, Float clean, Float accuracy, Float communication, Float location, Float satisfaction, Accommodation accommodation) {
         this.checkin = checkin;
         this.clean = clean;
         this.accuracy = accuracy;
         this.communication = communication;
         this.location = location;
         this.satisfaction = satisfaction;
-        this.accomodations = accomodations;
+        this.accommodation = accommodation;
 
     }
 }
