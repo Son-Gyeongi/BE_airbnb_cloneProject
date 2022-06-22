@@ -1,4 +1,4 @@
-package com.sparta.airbnb_clone_be.dto;
+package com.sparta.airbnb_clone_be.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;

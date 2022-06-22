@@ -1,9 +1,10 @@
 package com.sparta.airbnb_clone_be.dto.RequestDto;
 
+
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
+
 
 @Data
 public class AccommodationRequestDto {
@@ -27,4 +28,3 @@ public class AccommodationRequestDto {
 
     private List<MultipartFile> images;
 }
-

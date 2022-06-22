@@ -1,6 +1,7 @@
 package com.sparta.airbnb_clone_be.service;
 
-import com.sparta.airbnb_clone_be.dto.CommentAvgResponseDto;
+import com.sparta.airbnb_clone_be.dto.response.CommentAvgResponseDto;
+import com.sparta.airbnb_clone_be.dto.response.CommentResponseDto;
 import com.sparta.airbnb_clone_be.model.Accommodation;
 import com.sparta.airbnb_clone_be.model.Comment;
 import com.sparta.airbnb_clone_be.repository.AccommodationRepository;
@@ -10,6 +11,7 @@ import com.sparta.airbnb_clone_be.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,18 +23,48 @@ public class CommentService {
     private final AccommodationRepository accommodationRepository;
 
     //등록
-    public Comment createComment(CommentRequestDto commentRequestdto, UserDetailsImpl userDetails) {
-        Accommodation accomodation = accommodationRepository.findById(commentRequestdto.getAccomodationid()).orElseThrow(
+    public Comment createComment(CommentRequestDto commentRequestdto, Long id, UserDetailsImpl userDetails) {
+        Accommodation accommodation = accommodationRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("")
         );
 
-        String email = "test 확인";
-        if (userDetails != null) {
-            email = userDetails.getUser().getEmail();
-        }
-        Comment comment = new Comment(commentRequestdto.getCheckin(), commentRequestdto.getClean(), commentRequestdto.getAccuracy(),  commentRequestdto.getCommunication(),  commentRequestdto.getLocation(),  commentRequestdto.getSatisfaction(), accomodation);
+//        String email = "test 확인";
+//        if (userDetails != null) {
+//            email = userDetails.getUser().getEmail();
+//        }
+
+
+        Comment comment = new Comment(commentRequestdto.getCheckin(),
+                commentRequestdto.getClean(),
+                commentRequestdto.getAccuracy(),
+                commentRequestdto.getCommunication(),
+                commentRequestdto.getLocation(),
+                commentRequestdto.getSatisfaction(),
+                accommodation,
+                userDetails.getUser(),
+                commentRequestdto.getComment());
+
         Comment saveComment = commentRepository.save(comment);
         return saveComment;
+    }
+
+    public List<CommentResponseDto> findComments(Long id){
+        List<Comment> comments = commentRepository.findAllByAccommodationId(id);
+        List<CommentResponseDto> commentResponseDtos = new ArrayList<>();
+
+        for(Comment comment : comments){
+            CommentResponseDto commentResponseDto = CommentResponseDto.builder()
+                    .id(comment.getId())
+                    .content(comment.getComment())
+                    .createdAt(comment.getCreatedAt())
+                    .user_nickname(comment.getUser().getNickname())
+                    .accommodation_id(comment.getAccommodation().getId())
+                    .build();
+
+            commentResponseDtos.add(commentResponseDto);
+        }
+
+        return commentResponseDtos;
     }
 
     public CommentAvgResponseDto starAvg(Long id) {

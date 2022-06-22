@@ -1,6 +1,7 @@
 package com.sparta.airbnb_clone_be.model;
 
 import com.sparta.airbnb_clone_be.dto.PhotoDto;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -38,4 +39,3 @@ public class Photo {
 //            accommodation.getPhotos().add(this);
     }
 }
-
