@@ -1,4 +1,4 @@
-package com.sparta.airbnb_clone_be.Servcie;
+package com.sparta.airbnb_clone_be.service;
 
 import com.sparta.airbnb_clone_be.dto.PhotoDto;
 import com.sparta.airbnb_clone_be.dto.response.PhotoResponseDto;

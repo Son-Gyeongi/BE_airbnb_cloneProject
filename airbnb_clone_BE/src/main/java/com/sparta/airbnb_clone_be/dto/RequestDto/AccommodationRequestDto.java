@@ -1,13 +1,8 @@
 package com.sparta.airbnb_clone_be.dto.RequestDto;
 
-import com.sparta.airbnb_clone_be.model.Photo;
-import lombok.Data;
-import lombok.Getter;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
+import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 

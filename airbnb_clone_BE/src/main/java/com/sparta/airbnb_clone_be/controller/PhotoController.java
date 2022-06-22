@@ -1,6 +1,6 @@
 package com.sparta.airbnb_clone_be.controller;
 
-import com.sparta.airbnb_clone_be.Servcie.PhotoService;
+import com.sparta.airbnb_clone_be.service.PhotoService;
 import com.sparta.airbnb_clone_be.dto.response.PhotoResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

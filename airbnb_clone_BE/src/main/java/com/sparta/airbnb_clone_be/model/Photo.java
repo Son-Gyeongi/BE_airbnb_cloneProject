@@ -1,10 +1,9 @@
 package com.sparta.airbnb_clone_be.model;
 
 import com.sparta.airbnb_clone_be.dto.PhotoDto;
-import lombok.Builder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.sparta.airbnb_clone_be.Servcie;
+package com.sparta.airbnb_clone_be.service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AmazonS3Exception;

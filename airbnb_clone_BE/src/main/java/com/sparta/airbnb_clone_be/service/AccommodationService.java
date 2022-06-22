@@ -1,4 +1,4 @@
-package com.sparta.airbnb_clone_be.Servcie;
+package com.sparta.airbnb_clone_be.service;
 
 import com.sparta.airbnb_clone_be.dto.PhotoDto;
 import com.sparta.airbnb_clone_be.dto.RequestDto.AccommodationRequestDto;
@@ -19,6 +19,46 @@ import java.util.List;
 public class AccommodationService {
     private final AccommodationRepository accommodationRepository;
     private final PhotoRepository photoRepository;
+
+
+    public List<AccommodationResponseDto> findMain() {
+
+        List<AccommodationResponseDto> accommodationResponseDtoList = new ArrayList<>();
+        List<Accommodation> accommoList = accommodationRepository.findAll();
+
+        for(Accommodation accommodation : accommoList) {
+            AccommodationResponseDto accommodationResponseDto = new AccommodationResponseDto(accommodation);
+
+            List<Long> photoIds = new ArrayList<>();
+            for(Photo photo : accommodation.getPhotos())
+                photoIds.add(photo.getId());
+            accommodationResponseDto.setPhotoId(photoIds);
+
+            accommodationResponseDtoList.add(accommodationResponseDto);
+        }
+
+        return accommodationResponseDtoList;
+    }
+
+    //카테고리별 검색
+    public List<AccommodationResponseDto> findByCategory(String category) {
+
+        List<AccommodationResponseDto> accommodationResponseDtoList = new ArrayList<>();
+
+        List<Accommodation> accommoList = accommodationRepository.findByCategory(category);
+
+        for (Accommodation accommodation : accommoList) {
+            AccommodationResponseDto accommodationResponseDto = new AccommodationResponseDto(accommodation);
+
+            List<Long> photoIds = new ArrayList<>();
+            for (Photo photo : accommodation.getPhotos())
+                photoIds.add(photo.getId());
+            accommodationResponseDto.setPhotoId(photoIds);
+
+            accommodationResponseDtoList.add(accommodationResponseDto);
+        }
+        return accommodationResponseDtoList;
+    }
 
     @Transactional
     public AccommodationResponseDto findByAccommodation(Long id){
@@ -65,19 +105,8 @@ public class AccommodationService {
 
         accommodationRepository.save(accommodation);
 
-//        AccommodationResponseDto accommodationResponseDto = new AccommodationResponseDto(
-//                id,
-//                accommodationRequestDto.getTitle(),
-//                accommodationRequestDto.getFee(),
-//                accommodationRequestDto.getContent(),
-//                accommodationRequestDto.getAddress(),
-//                accommodationRequestDto.getPeople(),
-//                accommodationRequestDto.getWifi(),
-//                accommodationRequestDto.getParking(),
-//                accommodationRequestDto.getCategory(),
-//                accommodationRequestDto.getRoom()
-//        );
-
         return accommodation;
     }
+
+
 }
