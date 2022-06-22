@@ -45,6 +45,8 @@ public class CommentService {
                 commentRequestdto.getComment());
 
         Comment saveComment = commentRepository.save(comment);
+
+        System.out.println("코멘트 성공");
         return saveComment;
     }
 
@@ -64,6 +66,7 @@ public class CommentService {
             commentResponseDtos.add(commentResponseDto);
         }
 
+        System.out.println("코멘트 검색 성공");
         return commentResponseDtos;
     }
 
@@ -117,6 +120,8 @@ public class CommentService {
 
         totalStar = (cleanAvg + chechingAvg + accuracyAvg + communicationAvg + locationAvg +satisfactionAvg)/6;
 
+
+        System.out.println("avg 검색 성공");
         //소수점 아래 1자리, 2자리까지 나타내려고 아래와 같이 썼다.
         return CommentAvgResponseDto.builder()
                 .cleanAvg((float) (Math.round(cleanAvg * 10) / 10.0))
