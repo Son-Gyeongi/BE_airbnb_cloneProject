@@ -86,13 +86,13 @@ public class CommentService {
 
         //소수점 아래 1자리, 2자리까지 나타내려고 아래와 같이 썼다.
         return CommentAvgResponseDto.builder()
-                .cleanAvg(String.format("%1.f",cleanAvg))
-                .chechingAvg(String.format("%1.f",chechingAvg))
-                .accuracyAvg(String.format("%1.f",accuracyAvg))
-                .communicationAvg(String.format("%1.f",communicationAvg))
-                .locationAvg(String.format("%1.f",locationAvg))
-                .satisfactionAvg(String.format("%1.f",satisfactionAvg))
-                .totalStar(String.format("%2.f",totalStar))
+                .cleanAvg((float) (Math.round(cleanAvg * 100) / 10.0))
+                .chechingAvg((float) (Math.round(chechingAvg * 100) / 10.0))
+                .accuracyAvg((float) (Math.round(accuracyAvg * 100) / 10.0))
+                .communicationAvg((float) (Math.round(communicationAvg * 100) / 10.0))
+                .locationAvg((float) (Math.round(locationAvg * 100) / 10.0))
+                .satisfactionAvg((float) (Math.round(satisfactionAvg * 100) / 10.0))
+                .totalStar((float) (Math.round(totalStar * 100) / 100.0))
                 .build();
     }
 }
