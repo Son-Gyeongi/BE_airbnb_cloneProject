@@ -142,6 +142,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("POST,/signup/nickname");  //nickname 중복 체크
         skipPathList.add("POST,/login");
 
+        //로그인 없이도 접근 가능한 skipPathList
+        skipPathList.add("GET,/api/**"); //GET메서드에 /api 다음 주소는 모두 로그인없이 접근 가능
+
         //로그인이 왜 두개지?
 //        skipPathList.add("POST,/api/login");
 //        skipPathList.add("POST,/user/login");
