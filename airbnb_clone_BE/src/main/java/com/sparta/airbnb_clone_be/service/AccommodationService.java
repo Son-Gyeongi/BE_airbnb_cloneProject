@@ -38,6 +38,7 @@ public class AccommodationService {
             accommodationResponseDtoList.add(accommodationResponseDto);
         }
 
+        System.out.println("메인 검색 성공");
         return accommodationResponseDtoList;
     }
 
@@ -58,6 +59,8 @@ public class AccommodationService {
 
             accommodationResponseDtoList.add(accommodationResponseDto);
         }
+
+        System.out.println("카테고리 검색 성공");
         return accommodationResponseDtoList;
     }
 
@@ -74,6 +77,7 @@ public class AccommodationService {
             photoUrls.add(photo.getUrl());
         accommodationResponseDto.setPhotoId(photoUrls);
 
+        System.out.println("디테일 검색 성공");
         return accommodationResponseDto;
     }
 
@@ -100,13 +104,12 @@ public class AccommodationService {
                 Photo photo = new Photo(photoDto);
                 photo.setAccommodation(accommodation);
                 photoRepository.save(photo);
-                System.out.println(1);
             }
         }
 
 
         accommodationRepository.save(accommodation);
-
+        System.out.println("호스트 성공");
         return accommodation;
     }
 
