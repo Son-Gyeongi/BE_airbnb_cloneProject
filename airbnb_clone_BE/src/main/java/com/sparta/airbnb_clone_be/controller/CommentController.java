@@ -21,7 +21,7 @@ public class CommentController {
 
     //댓글등록
     @PostMapping("/api/accommodations/{id}/comments")
-    public CommentWriteResponseDto createComment(@RequestBody CommentRequestDto commentRequestdto, @AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long id) {
+    public CommentResponseDto createComment(@RequestBody CommentRequestDto commentRequestdto, @AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long id) {
         return commentService.createComment(commentRequestdto, id, userDetails);
 
 
