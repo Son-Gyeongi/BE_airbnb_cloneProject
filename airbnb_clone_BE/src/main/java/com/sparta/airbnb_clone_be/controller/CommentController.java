@@ -3,6 +3,7 @@ package com.sparta.airbnb_clone_be.controller;
 import com.sparta.airbnb_clone_be.dto.response.CommentAvgResponseDto;
 import com.sparta.airbnb_clone_be.dto.RequestDto.CommentRequestDto;
 import com.sparta.airbnb_clone_be.dto.response.CommentResponseDto;
+import com.sparta.airbnb_clone_be.dto.response.CommentWriteResponseDto;
 import com.sparta.airbnb_clone_be.model.Comment;
 import com.sparta.airbnb_clone_be.security.UserDetailsImpl;
 import com.sparta.airbnb_clone_be.service.CommentService;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,7 +21,7 @@ public class CommentController {
 
     //댓글등록
     @PostMapping("/api/accommodations/{id}/comments")
-    public CommentResponseDto createComment(@RequestBody CommentRequestDto commentRequestdto, @AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long id) {
+    public CommentWriteResponseDto createComment(@RequestBody CommentRequestDto commentRequestdto, @AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long id) {
         return commentService.createComment(commentRequestdto, id, userDetails);
 
 

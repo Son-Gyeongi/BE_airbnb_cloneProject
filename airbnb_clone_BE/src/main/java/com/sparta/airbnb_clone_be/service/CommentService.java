@@ -2,6 +2,7 @@ package com.sparta.airbnb_clone_be.service;
 
 import com.sparta.airbnb_clone_be.dto.response.CommentAvgResponseDto;
 import com.sparta.airbnb_clone_be.dto.response.CommentResponseDto;
+import com.sparta.airbnb_clone_be.dto.response.CommentWriteResponseDto;
 import com.sparta.airbnb_clone_be.model.Accommodation;
 import com.sparta.airbnb_clone_be.model.Comment;
 import com.sparta.airbnb_clone_be.repository.AccommodationRepository;
@@ -23,7 +24,7 @@ public class CommentService {
     private final AccommodationRepository accommodationRepository;
 
     //등록
-    public CommentResponseDto createComment(CommentRequestDto commentRequestdto, Long id, UserDetailsImpl userDetails) {
+    public CommentWriteResponseDto createComment(CommentRequestDto commentRequestdto, Long id, UserDetailsImpl userDetails) {
         Accommodation accommodation = accommodationRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("")
         );
@@ -42,16 +43,23 @@ public class CommentService {
         System.out.println("comment 생성");
         commentRepository.save(comment);
 
-        CommentResponseDto commentResponseDto = CommentResponseDto.builder()
+        CommentWriteResponseDto commentWriteResponseDto = CommentWriteResponseDto.builder()
                 .id(comment.getId())
                 .content(comment.getComment())
                 .createdAt(comment.getCreatedAt())
                 .user_nickname(comment.getUser().getNickname())
                 .accommodation_id(comment.getAccommodation().getId())
+                .cleanAvg(starAvg(id).getCleanAvg())
+                .chechingAvg(starAvg(id).getChechingAvg())
+                .accuracyAvg(starAvg(id).getAccuracyAvg())
+                .communicationAvg(starAvg(id).getCommunicationAvg())
+                .locationAvg(starAvg(id).getLocationAvg())
+                .satisfactionAvg(starAvg(id).getSatisfactionAvg())
+                .totalStar(starAvg(id).getTotalStar())
                 .build();
 
         System.out.println("코멘트 성공");
-        return commentResponseDto;
+        return commentWriteResponseDto;
     }
 
     public List<CommentResponseDto> findComments(Long id){
