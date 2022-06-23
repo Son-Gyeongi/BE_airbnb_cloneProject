@@ -32,7 +32,7 @@ public class AccommodationService {
 
             List<String> photoUrl = new ArrayList<>();
             for(Photo photo : accommodation.getPhotos())
-                photoUrl.add(photo.getUrl());
+                photoUrl.add(photo.getPhotourl());
             accommodationResponseDto.setPhotoId(photoUrl);
 
             accommodationResponseDtoList.add(accommodationResponseDto);
@@ -54,7 +54,7 @@ public class AccommodationService {
 
             List<String> photoUrl = new ArrayList<>();
             for (Photo photo : accommodation.getPhotos())
-                photoUrl.add(photo.getUrl());
+                photoUrl.add(photo.getPhotourl());
             accommodationResponseDto.setPhotoId(photoUrl);
 
             accommodationResponseDtoList.add(accommodationResponseDto);
@@ -74,7 +74,7 @@ public class AccommodationService {
 
         List<String> photoUrls = new ArrayList<>();
         for(Photo photo : accommodation.getPhotos())
-            photoUrls.add(photo.getUrl());
+            photoUrls.add(photo.getPhotourl());
         accommodationResponseDto.setPhotoId(photoUrls);
 
         System.out.println("디테일 검색 성공");

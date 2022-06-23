@@ -10,24 +10,26 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
+
+@Table(name = "Photos")
 public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String key;
+    private String name;
 
     @Column(nullable = false)
-    private String url;
+    private String photourl;
 
     @ManyToOne
     @JoinColumn(name = "accommodation_id")
     private Accommodation accommodation;
 
     public Photo(PhotoDto photoDto){
-        this.key = photoDto.getKey();
-        this.url = photoDto.getPath();
+        this.name = photoDto.getKey();
+        this.photourl = photoDto.getPath();
     }
 
     public void setAccommodation(Accommodation accommodation){

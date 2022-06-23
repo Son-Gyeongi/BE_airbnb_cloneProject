@@ -10,6 +10,6 @@ public class PhotoResponseDto {
 
     public PhotoResponseDto(Photo photo){
         this.id = photo.getId();
-        this.url = photo.getUrl();
+        this.url = photo.getPhotourl();
     }
 }
