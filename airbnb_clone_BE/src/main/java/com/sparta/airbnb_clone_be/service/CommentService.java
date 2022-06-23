@@ -28,6 +28,7 @@ public class CommentService {
                 () -> new IllegalArgumentException("")
         );
 
+        System.out.println("accommodation 검색");
         Comment comment = new Comment(commentRequestdto.getCheckin(),
                 commentRequestdto.getClean(),
                 commentRequestdto.getAccuracy(),
@@ -38,7 +39,8 @@ public class CommentService {
                 userDetails.getUser(),
                 commentRequestdto.getComment());
 
-        Comment saveComment = commentRepository.save(comment);
+        System.out.println("comment 생성");
+        commentRepository.save(comment);
 
         CommentResponseDto commentResponseDto = CommentResponseDto.builder()
                 .id(comment.getId())

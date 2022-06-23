@@ -13,22 +13,16 @@ import javax.validation.constraints.Min;
 public  class CommentRequestDto {
     
     private String comment;
-    @Min(0)
-    @Max(5)
+
     private Float checkin;
-    @Min(0)
-    @Max(5)
+
     private Float clean;
-    @Min(0)
-    @Max(5)
+
     private Float accuracy;
-    @Min(0)
-    @Max(5)
+
     private Float communication;
-    @Min(0)
-    @Max(5)
+
     private Float location;
-    @Min(0)
-    @Max(5)
+
     private Float satisfaction;
 }
