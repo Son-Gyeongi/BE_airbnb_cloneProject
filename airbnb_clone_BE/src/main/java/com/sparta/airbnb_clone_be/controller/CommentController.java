@@ -3,15 +3,12 @@ package com.sparta.airbnb_clone_be.controller;
 import com.sparta.airbnb_clone_be.dto.response.CommentAvgResponseDto;
 import com.sparta.airbnb_clone_be.dto.RequestDto.CommentRequestDto;
 import com.sparta.airbnb_clone_be.dto.response.CommentResponseDto;
-import com.sparta.airbnb_clone_be.dto.response.CommentWriteResponseDto;
-import com.sparta.airbnb_clone_be.model.Comment;
 import com.sparta.airbnb_clone_be.security.UserDetailsImpl;
 import com.sparta.airbnb_clone_be.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @RestController

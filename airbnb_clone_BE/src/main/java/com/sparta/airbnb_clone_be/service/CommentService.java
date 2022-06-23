@@ -2,7 +2,6 @@ package com.sparta.airbnb_clone_be.service;
 
 import com.sparta.airbnb_clone_be.dto.response.CommentAvgResponseDto;
 import com.sparta.airbnb_clone_be.dto.response.CommentResponseDto;
-import com.sparta.airbnb_clone_be.dto.response.CommentWriteResponseDto;
 import com.sparta.airbnb_clone_be.model.Accommodation;
 import com.sparta.airbnb_clone_be.model.Comment;
 import com.sparta.airbnb_clone_be.repository.AccommodationRepository;
