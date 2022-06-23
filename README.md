@@ -54,7 +54,7 @@
 
 # ****🧩 아키텍처****
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/10f20d3a-d7ef-4dde-a162-d71c74406096/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220616%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220616T065347Z&X-Amz-Expires=86400&X-Amz-Signature=763c44611277014ea28cda382f429239df4d4de8f0db7f115a146ab78292b36c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject" width="900">
+<img src="https://user-images.githubusercontent.com/78200199/175262501-606f615b-da33-443c-958f-929d263d2339.png" width="900">
 
 # ****💡 Trouble Shooting****
 1.사진 데이터 저장 문제
