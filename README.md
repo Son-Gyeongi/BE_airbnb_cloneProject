@@ -50,7 +50,7 @@
 
 # ****🗺**** ERD 설계
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9d3d9f0d-897a-48c3-b4ed-5380595d1dd6/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220623%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220623T085508Z&X-Amz-Expires=86400&X-Amz-Signature=63ab54f3c8fff3fdb8cd960ba0e944cef09b912ea8ea808e317e0edf60e7b3c0&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject" width="650">
+<img src="https://smiling-level-1e8.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9d3d9f0d-897a-48c3-b4ed-5380595d1dd6%2FUntitled.png?table=block&id=a24df275-3d2f-438b-a9ed-bf2c769bf29d&spaceId=d83d6c52-5541-413b-bad5-6b8d480f0887&width=2000&userId=&cache=v2" width="650">
 
 # ****🧩 아키텍처****
 
