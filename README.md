@@ -26,7 +26,7 @@
 
 >**[Front-End Repository](https://github.com/hh99-airbnb-clone/airbnb/tree/main/airbnb)
 ><br>
->[시연영상 구경하기 - URL 바꿔야함]()
+>[시연영상 구경하기](https://youtu.be/AxPs9jh9EF0)
 ><br>
 >[팀 노션](https://smiling-level-1e8.notion.site/4-af2eb66124c34052844374cb4ff6294b)**
 
